@@ -1,0 +1,11 @@
+{
+  "name": "tailwind_final",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "tailwindcss build -i input.css -o css/main.css",
+    "watch": "tailwindcss build -i input.css -o css/main.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.4.1"
+  }
+}
