@@ -1,11 +1,22 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../Components/Header';
 import StatsTable from '../Components/StatsTable';
-import statsData from '../data/statsdata';
+import {getData} from '../data/statsdata';
 const StatsTableContainer = () => {
   const[hoverMonthIndex,setHoverMonthIndex]=useState(null);
   const[hoverYearValue,setHoverYearValue]=useState(null);
   const[hoverCell,setHoverCell]=useState({yearIndex:null,monthIndex:null});
+  const [statsData,setStatsData]=useState([]);
+
+  useEffect(()=>{
+    const fetchData=async()=>{
+      const data=await getData();
+      setStatsData(data);
+    }
+
+  fetchData();
+  },[])
+
 
   const onMonthHover = (idx, hovering) => {
     setHoverMonthIndex(hovering ? idx : null);

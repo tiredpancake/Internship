@@ -1,8 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import CellCards from './CellCards'; 
-import months from '../data/months';
+import {getMonths } from '../data/months';
 
 const Header = ({ onMonthHover, hoveredMonthIndex }) => {
+  const [months,setMonths]=useState([]);
+  useEffect(()=>{
+    const fetchData=async()=>
+    {
+      const data= await getMonths ();
+      setMonths(data);
+    }
+    fetchData();
+
+  },[]);
+
+
+
+
   return (
     <div className=" font-vazirmatn flex flex-row-reverse font-semibold bg-gray-100 max-w-7xl h-12 mx-auto px-4 mt-10 rounded-t-md rounded-b-sm items-center text-4 text-w-">
       <div className="pl-20 text-center   ml-2 mr-3 ">سال</div>
