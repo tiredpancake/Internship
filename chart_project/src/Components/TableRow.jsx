@@ -42,7 +42,6 @@ const TableRow = ({
           const isHoveringAnyCell = hoveredCell?.yearIndex !== null && hoveredCell?.monthIndex !== null;
 
           const shouldDim =
-            !isSummaryRow &&
             !isHoveringAnyCell &&
             (hoveredMonthIndex !== null || hoveredYearValue !== null) &&
             !isHoveredColumn &&
