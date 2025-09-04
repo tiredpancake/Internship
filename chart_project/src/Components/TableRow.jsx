@@ -15,8 +15,8 @@ const TableRow = ({
   const titleStr = title?.toString();
   const isSummaryRow = ['میانگین', 'انحراف معیار'].includes(titleStr);
   const isStandardDeviation = titleStr === 'انحراف معیار';
-  const isYearHighlighted = hoveredCell?.yearIndex === yearIndex || hoveredYearValue==title;
-  const isYearDimmed=hoveredYearValue!=null && hoveredYearValue!=title && !isSummaryRow
+  const isYearHighlighted = hoveredCell?.yearIndex === yearIndex || hoveredYearValue==title ;
+  const isYearDimmed=hoveredYearValue!=null && hoveredYearValue!=title && !isSummaryRow 
   const isHoveringAnyCell = hoveredCell?.yearIndex !== null && hoveredCell?.monthIndex !== null;
   const isHoveringSummaryRow = ['میانگین', 'انحراف معیار'].some(label =>
     String(hoveredYearValue)?.includes(label)
@@ -33,7 +33,7 @@ const TableRow = ({
           <span
             className={`px-2 py-1 rounded-md transition-colors cursor-pointer   hover:bg-blue-600  ${
               isYearHighlighted ? 'bg-blue-600 text-white' : '' } 
-              ${isYearHighlighted && isSummaryRow? "text-zinc-950 hover:text-white":''} 
+              ${!isYearHighlighted && isSummaryRow? "text-zinc-950 hover:text-white ":''} 
               ${ !isYearHighlighted && isYearDimmed? 'text-zinc-500 ':''}` }
           >
             {toPersianNumbers(title)}
@@ -54,7 +54,7 @@ const TableRow = ({
             !isHoveredColumn &&
             !isHoveredRow;
 
-          let bgClass = 'bg-white border border-gray-300'; 
+          let bgClass = 'bg-white border border-gray-300 text-zinc-500 font-semibold'; 
           if (isSummaryRow && isStandardDeviation) {
             bgClass = 'bg-gray-100';
           } else if (isSummaryRow || isHoveredCell || isHoveredColumn || isHoveredRow) {
