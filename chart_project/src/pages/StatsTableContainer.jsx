@@ -1,35 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import Header from '../Components/Header';
 import StatsTable from '../Components/StatsTable';
-import {getData} from '../data/statsdata';
+
 const StatsTableContainer = () => {
+  
   const[hoverMonthIndex,setHoverMonthIndex]=useState(null);
   const[hoverYearValue,setHoverYearValue]=useState(null);
   const[hoverCell,setHoverCell]=useState({yearIndex:null,monthIndex:null});
-  const [statsData,setStatsData]=useState([]);
 
-  useEffect(()=>{
-    const fetchData=async()=>{
-      const data=await getData();
-      setStatsData(data);
-    }
 
-  fetchData();
-  },[])
 
 
   const onMonthHover = (idx, hovering) => {
     setHoverMonthIndex(hovering ? idx : null);
   };
-  const onYearHover = (yearVal, hovering) => {
-    setHoverYearValue(hovering ? yearVal : null);
+  const onYearHover = (yearIdx, hovering) => {
+    setHoverYearValue(hovering ? yearIdx : null);
+    console.log("here",yearIdx)
   };
 const onCellHover = (yearIdx, monthIdx, hovering) => {
-  console.log("Hovering cell:", yearIdx, monthIdx, statsData[yearIdx]?.year);
+  console.log("Hovering cell:", yearIdx, monthIdx);
   if (hovering) {
     setHoverCell({ yearIndex: yearIdx, monthIndex: monthIdx });
     setHoverMonthIndex(monthIdx); 
-    // console.log("here",statsData[yearIdx]?.year,monthIdx);
     setHoverYearValue(yearIdx); 
   } else {
     setHoverCell({ yearIndex: null, monthIndex: null });

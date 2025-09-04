@@ -12,9 +12,14 @@ const TableRow = ({
   hoveredYearValue,
   onYearHover
 }) => {
-  const isSummaryRow = ['میانگین', 'انحراف معیار'].includes(title?.toString());
-  const isStandardDeviation = title?.toString() === 'انحراف معیار';
+  const titleStr = title?.toString();
+  const isSummaryRow = ['میانگین', 'انحراف معیار'].includes(titleStr);
+  const isStandardDeviation = titleStr === 'انحراف معیار';
   const isYearHighlighted = hoveredCell?.yearIndex === yearIndex;
+  const isHoveringAnyCell = hoveredCell?.yearIndex !== null && hoveredCell?.monthIndex !== null;
+  const isHoveringSummaryRow = ['میانگین', 'انحراف معیار'].some(label =>
+    String(hoveredYearValue)?.includes(label)
+  );
 
   return (
     <div className="flex flex-row-reverse bg-transparent items-center ml-24">
@@ -25,7 +30,7 @@ const TableRow = ({
           onMouseLeave={() => onYearHover(title, false)}
         >
           <span
-            className={`px-2 py-1 rounded-md transition-colors cursor-pointer hover:bg-blue-600 ${
+            className={`px-2 py-1 rounded-md transition-colors cursor-pointer hover:bg-blue-600 hover:text-white ${
               isYearHighlighted ? 'bg-blue-600 text-white' : ''
             }`}
           >
@@ -39,25 +44,20 @@ const TableRow = ({
           const isHoveredCell = hoveredCell?.yearIndex === yearIndex && hoveredCell?.monthIndex === idx;
           const isHoveredColumn = hoveredMonthIndex === idx;
           const isHoveredRow = hoveredYearValue === title;
-          const isHoveringAnyCell = hoveredCell?.yearIndex !== null && hoveredCell?.monthIndex !== null;
-
           const shouldDim =
+            !isSummaryRow &&
+            !isHoveringSummaryRow &&
             !isHoveringAnyCell &&
             (hoveredMonthIndex !== null || hoveredYearValue !== null) &&
             !isHoveredColumn &&
             !isHoveredRow;
 
-          let bgClass;
-
+          let bgClass = 'bg-white border border-gray-300'; 
           if (isSummaryRow && isStandardDeviation) {
             bgClass = 'bg-gray-100';
-          } else if (isSummaryRow) {
+          } else if (isSummaryRow || isHoveredCell || isHoveredColumn || isHoveredRow) {
             bgClass = getColor(num);
-          } else if (isHoveredCell || isHoveredColumn || isHoveredRow) {
-            bgClass = getColor(num);
-          } else if (shouldDim) {
-            bgClass = 'bg-white border border-gray-300';
-          } else {
+          } else if (!shouldDim) {
             bgClass = getColor(num);
           }
 
@@ -70,7 +70,7 @@ const TableRow = ({
               <CellCards
                 heightClass="h-10"
                 bgClass={bgClass}
-                content={`%${num}`}
+                content={`${num}`}
                 hover={null}
               />
             </div>

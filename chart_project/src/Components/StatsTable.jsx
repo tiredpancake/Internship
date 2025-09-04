@@ -55,8 +55,7 @@ const StatsTable = ({ hoveredMonthIndex, hoveredYearValue,hoveredCell, onYearHov
       key={row.year}
       title={row.year}
       nums={row.nums}
-            yearIndex={statsData.length  + index}
-
+      yearIndex={statsData.length  + index}
       hoveredMonthIndex={hoveredMonthIndex}
       hoveredCell={hoveredCell}        
       onCellHover={onCellHover}  
