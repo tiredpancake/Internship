@@ -16,7 +16,7 @@ const CellCards = ({ heightClass, bgClass, content, hover }) => {
 
   return (
     <div
-      className={`flex justify-center cursor-pointer items-center w-20 rounded-md ${heightClass} ${finalBgClass} ${hover || ''}`}
+      className={`flex justify-center font-medium  text-sm cursor-pointer items-center w-20 rounded-md ${heightClass} ${finalBgClass} ${hover || ''}`}
     >
       {displayContent}
     </div>

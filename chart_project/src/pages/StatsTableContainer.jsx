@@ -3,7 +3,6 @@ import Header from '../Components/Header';
 import StatsTable from '../Components/StatsTable';
 
 const StatsTableContainer = () => {
-  
   const[hoverMonthIndex,setHoverMonthIndex]=useState(null);
   const[hoverYearValue,setHoverYearValue]=useState(null);
   const[hoverCell,setHoverCell]=useState({yearIndex:null,monthIndex:null});

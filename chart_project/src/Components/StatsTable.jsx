@@ -30,7 +30,7 @@ const StatsTable = ({ hoveredMonthIndex, hoveredYearValue,hoveredCell, onYearHov
   },[])
     
   return (
-    <div className=" font-vazirmatn flex flex-col border-2 mt-4 py-6 pl-6 max-w-7xl mx-auto rounded-xl h-5xl gap-4 overflow-y-auto">
+    <div className=" font-vazirmatn flex flex-col border-2 mt-4 py-6 pl-6 max-w-7xl mx-auto rounded-2xl h-5xl gap-4 overflow-y-auto">
       {statsData.map((row,index) => (
     <TableRow
       key={row.year}
@@ -46,7 +46,7 @@ const StatsTable = ({ hoveredMonthIndex, hoveredYearValue,hoveredCell, onYearHov
     />
   ))}
 
-  <div className="col-span-13 border-t border-gray-400 my-1 mx-2 mr-5"></div>
+  <div className="col-span-13 border-t border-gray-300 my-1 mx-2 mr-5"></div>
 
   {Array.isArray(summaryData) &&
   summaryData.map((row, index) => (
