@@ -7,18 +7,17 @@ import { Interface } from 'readline';
 
 interface hoveredCellProp
 {
-  yearIndex:Number;
-  monthIndex:Number;
+  yearIndex:number;
+  monthIndex:number;
   
 }
 
 interface StatsTableProp
 {
-  hoveredMonthIndex :Number;
-  hoveredYearValue :Number;
-  hoveredCell :hoveredCellProp;
-  onYearHover:(yearIdx:Number,onYearHover:boolean)=>void;
-  onCellHover:(yearIdx:Number, monthIdx :Number, hovering:boolean)=>void
+  hoveredMonthIndex :number;
+  hoveredYearValue :number;
+  onYearHover:(yearIdx:number,onYearHover:boolean)=>void;
+  onCellHover:(yearIdx:number, monthIdx :number, hovering:boolean)=>void
 }
 
 interface dataProp{

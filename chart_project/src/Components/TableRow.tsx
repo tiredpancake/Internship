@@ -4,6 +4,26 @@ import { toPersianNumbers, getColor } from '../utils/conversion';
 import { cn } from '../utils/cn';
 
 
+interface hoveredCellProp
+{
+  yearIndex:number;
+  monthIndex:number;
+  
+}
+
+interface tableRowProps
+{
+  title:number| string;
+  nums:number[]
+  yearIndex:number
+  hoveredMonthIndex:number
+  hoveredCell :hoveredCellProp;
+  onCellHover:(yearIdx:number, monthIdx :number, hovering:boolean)=>void;
+  hoveredYearValue:number;
+  onYearHover:(yearIdx:number,onYearHover:boolean)=>void;
+
+
+}
 
 
 
@@ -16,7 +36,7 @@ export const TableRow = ({
   onCellHover,
   hoveredYearValue,
   onYearHover
-}) => {
+}:tableRowProps) => {
 
   const titleStr = title?.toString();
   const isSummaryRow = ['میانگین', 'انحراف معیار'].includes(titleStr);
@@ -77,7 +97,6 @@ export const TableRow = ({
                 heightClass="h-10"
                 bgClass={bgClass}
                 content={`${num}`}
-                hover={null}
               />
             </div>
           );
