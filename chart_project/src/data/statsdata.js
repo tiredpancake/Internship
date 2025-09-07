@@ -1,26 +1,40 @@
 import axios from "axios";
-
 const url = "https://mocki.io/v1/91448c9c-9928-41ce-a936-54d2832ff012";
 
-export const getData = async () => {
+// Single function to fetch all data
+export const fetchAllData = async () => {
   try {
     const { data } = await axios.get(url);
-    const { rows, data: values } = data;
+    return data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return null;
+  }
+};
 
+// Modify existing functions to use the cached data
+export const getData = async (cachedData = null) => {
+  try {
+    const data = cachedData || await fetchAllData();
+    if (!data) return [];
+    
+    const { rows, data: values } = data;
     return rows.map((year, index) => ({
       year,
       nums: values[index]
     }));
   } catch (error) {
-    console.error("Error fetching data:", error);
+    console.error("Error processing data:", error);
+    return [];
   }
 };
 
-export const summaryRows = async () => {
+export const summaryRows = async (cachedData = null) => {
   try {
-    const { data } = await axios.get(url);
+    const data = cachedData || await fetchAllData();
+    if (!data) return [];
+    
     const columns = transposeToColumns(data.data);
-
     const { averages, stdDevs } = calculateSummaryStats(columns);
 
     return [
@@ -28,13 +42,26 @@ export const summaryRows = async () => {
       { year: 'انحراف معیار', nums: stdDevs }
     ];
   } catch (error) {
-    console.error("Error fetching summary rows:", error);
+    console.error("Error processing summary rows:", error);
+    return [];
+  }
+};
+
+export const getMonths = async (cachedData = null) => {
+  try {
+    const data = cachedData || await fetchAllData();
+    if (!data) return [];
+    
+    return data.columns;
+  } catch (error) {
+    console.error("Error Fetching months:", error);
+    return [];
   }
 };
 
 const transposeToColumns = (rows) => {
   const columnCount = 12;
-  return Array.from({ length: columnCount }, (_, colIndex) =>
+  return Array.from({ length: columnCount }, (_, colIndex) => 
     rows.map(row => row[colIndex])
   );
 };
@@ -61,8 +88,5 @@ const calculateSummaryStats = (columns) => {
     stdDevs.push(+stdDev.toFixed(1));
   });
 
-  return {
-    averages,
-    stdDevs
-  };
+  return { averages, stdDevs };
 };

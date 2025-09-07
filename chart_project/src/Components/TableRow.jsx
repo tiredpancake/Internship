@@ -1,7 +1,9 @@
 import React from 'react';
 import {CellCards} from './CellCards';
 import { toPersianNumbers, getColor } from '../utils/conversion';
+import { cn
 
+ } from '../utils/cn';
 export const TableRow = ({
   title,
   nums,
@@ -32,10 +34,10 @@ export const TableRow = ({
           onMouseLeave={() => onYearHover(title, false)}
         >
           <span
-            className={`px-2 py-1 rounded-md transition-colors cursor-pointer   hover:bg-blue-600  ${
-              isYearHighlighted ? 'bg-blue-600 text-white' : '' } 
-              ${!isYearHighlighted && isSummaryRow? "text-zinc-950 hover:text-white ":''} 
-              ${ !isYearHighlighted && isYearDimmed? 'text-zinc-500 ':''}` }
+            className={cn('px-2 py-1 rounded-md transition-colors cursor-pointer   hover:bg-blue-600',
+              isYearHighlighted  &&'bg-blue-600 text-white' , 
+              !isYearHighlighted && isSummaryRow && "text-zinc-950 hover:text-white ", 
+             !isYearHighlighted && isYearDimmed && 'text-zinc-500 ') }
           >
             {toPersianNumbers(title)}
           </span>
@@ -55,15 +57,12 @@ export const TableRow = ({
             !isHoveredColumn &&
             !isHoveredRow;
 
-          let bgClass = 'bg-white border border-gray-300 text-zinc-500 font-semibold'; 
-          if (isSummaryRow && isStandardDeviation) {
-            bgClass = 'bg-gray-100';
-          } else if (isSummaryRow || isHoveredCell || isHoveredColumn || isHoveredRow) {
-            bgClass = getColor(num);
-          } else if (!shouldDim) {
-            bgClass = getColor(num);
-          }
-
+          const bgClass=cn(
+            isSummaryRow && isStandardDeviation && 'bg-gray-100',
+            (isSummaryRow || isHoveredCell || isHoveredColumn || isHoveredRow || !shouldDim) && getColor(num),
+            (!isSummaryRow && shouldDim) &&'bg-white border border-gray-300 text-zinc-500 font-semibold',
+          );
+          
           return (
             <div
               key={`${yearIndex}-${idx}`}

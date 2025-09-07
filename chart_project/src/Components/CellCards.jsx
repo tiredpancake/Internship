@@ -1,4 +1,5 @@
 import { toPersianNumbers } from '../utils/conversion';
+import { cn } from '../utils/cn'; 
 
 export const CellCards = ({ heightClass, bgClass, content, hover }) => {
   let displayContent;
@@ -12,11 +13,13 @@ export const CellCards = ({ heightClass, bgClass, content, hover }) => {
     displayContent = toPersianNumbers(formatted);
   }
 
-  const finalBgClass = displayContent === '-' ? 'bg-transparent' : bgClass;
 
   return (
     <div
-      className={`flex justify-center font-medium  text-sm cursor-pointer items-center w-20 rounded-md ${heightClass} ${finalBgClass} ${hover || ''}`}
+      className={cn('flex justify-center font-medium  text-sm cursor-pointer items-center w-20 rounded-md ',
+        heightClass, 
+        displayContent ==='-' ? 'bg-transparent':bgClass,
+         hover )}
     >
       {displayContent}
     </div>
