@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import Header from '../Components/Header';
-import StatsTable from '../Components/StatsTable';
+import {Header} from '../Components/Header';
+import {StatsTable} from '../Components/StatsTable';
 
-const StatsTableContainer = () => {
+export const StatsTableContainer = () => {
   const[hoverMonthIndex,setHoverMonthIndex]=useState(null);
   const[hoverYearValue,setHoverYearValue]=useState(null);
   const[hoverCell,setHoverCell]=useState({yearIndex:null,monthIndex:null});
@@ -46,4 +46,3 @@ const onCellHover = (yearIdx, monthIdx, hovering) => {
   )
 }
 
-export default StatsTableContainer

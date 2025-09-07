@@ -1,6 +1,6 @@
 import { toPersianNumbers } from '../utils/conversion';
 
-const CellCards = ({ heightClass, bgClass, content, hover }) => {
+export const CellCards = ({ heightClass, bgClass, content, hover }) => {
   let displayContent;
 
   if (content === '0' || content === 'null' ) {
@@ -23,4 +23,3 @@ const CellCards = ({ heightClass, bgClass, content, hover }) => {
   );
 };
 
-export default CellCards;

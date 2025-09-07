@@ -1,8 +1,8 @@
 import React from 'react';
-import CellCards from './CellCards';
+import {CellCards} from './CellCards';
 import { toPersianNumbers, getColor } from '../utils/conversion';
 
-const TableRow = ({
+export const TableRow = ({
   title,
   nums,
   yearIndex,
@@ -16,7 +16,8 @@ const TableRow = ({
   const isSummaryRow = ['میانگین', 'انحراف معیار'].includes(titleStr);
   const isStandardDeviation = titleStr === 'انحراف معیار';
   const isYearHighlighted = hoveredCell?.yearIndex === yearIndex || hoveredYearValue==title ;
-  const isYearDimmed=hoveredYearValue!=null && hoveredYearValue!=title && !isSummaryRow 
+  const isYearDimmed=hoveredYearValue!=null && hoveredYearValue!=title && !
+  isSummaryRow 
   const isHoveringAnyCell = hoveredCell?.yearIndex !== null && hoveredCell?.monthIndex !== null;
   const isHoveringSummaryRow = ['میانگین', 'انحراف معیار'].some(label =>
     String(hoveredYearValue)?.includes(label)
@@ -83,4 +84,3 @@ const TableRow = ({
   );
 };
 
-export default TableRow;

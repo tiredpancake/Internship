@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import TableRow from './TableRow'; 
+import {TableRow} from './TableRow'; 
 import {getData} from '../data/statsdata';
 import {summaryRows} from '../data/statsdata';
 
 
 
-const StatsTable = ({ hoveredMonthIndex, hoveredYearValue,hoveredCell, onYearHover,onCellHover}) => {
+export const StatsTable = ({ hoveredMonthIndex, hoveredYearValue,hoveredCell, onYearHover,onCellHover}) => {
   
   const [statsData,setStatsData]=useState([]);
   const [summaryData,setSummaryData]=useState([]);
@@ -71,4 +71,3 @@ const StatsTable = ({ hoveredMonthIndex, hoveredYearValue,hoveredCell, onYearHov
   )
 }
 
-export default StatsTable

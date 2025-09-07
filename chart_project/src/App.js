@@ -1,5 +1,5 @@
 
-import StatsTableContainer from './pages/StatsTableContainer';
+import {StatsTableContainer} from './pages/StatsTableContainer';
 function App() {
   return (
     <>

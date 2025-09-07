@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import CellCards from './CellCards'; 
+import {CellCards} from './CellCards'; 
 import {getMonths } from '../data/months';
 
-const Header = ({ onMonthHover, hoveredMonthIndex }) => {
+export const Header = ({ onMonthHover, hoveredMonthIndex }) => {
   const [months, setMonths] = useState([]);
 
   useEffect(() => {
@@ -52,4 +52,3 @@ const Header = ({ onMonthHover, hoveredMonthIndex }) => {
 };
 
 
-export default Header;
