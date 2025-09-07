@@ -3,8 +3,13 @@ import {CellCards} from './CellCards';
 import {getMonths } from '../data/statsdata';
 import { cn } from '../utils/cn';
 import { useData } from '../data/datacontext';
+import { Interface } from 'readline';
 
-export const Header = ({ onMonthHover, hoveredMonthIndex }) => {
+interface HeaderProps{
+  onMonthHover:(idx:number,hovering:boolean)=>void;
+  hoveredMonthIndex :Number;
+}
+export const Header = ({ onMonthHover, hoveredMonthIndex } :HeaderProps) => {
   const [months, setMonths] = useState([]);
   const {data,loading}=useData();
   

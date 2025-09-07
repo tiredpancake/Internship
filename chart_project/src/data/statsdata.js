@@ -14,7 +14,7 @@ export const getData = (responseData) => {
   }
 };
 
-export const summaryRows =(data) => {
+export const summaryRows =(data ) => {
   try {
     
     const columns = transposeToColumns(data.data);

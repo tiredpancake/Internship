@@ -2,6 +2,11 @@ import React from 'react';
 import {CellCards} from './CellCards';
 import { toPersianNumbers, getColor } from '../utils/conversion';
 import { cn } from '../utils/cn';
+
+
+
+
+
 export const TableRow = ({
   title,
   nums,

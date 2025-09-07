@@ -1,15 +1,23 @@
 import { toPersianNumbers } from '../utils/conversion';
 import { cn } from '../utils/cn'; 
 
-export const CellCards = ({ heightClass, bgClass, content, hover }) => {
-  let displayContent;
+
+interface CellCardsProps{
+    heightClass :string;
+    bgClass :string;
+    content:string | number;
+    hover?:string;
+}
+export const CellCards = ({ heightClass , bgClass , content, hover}:CellCardsProps) => {
+  let displayContent :string |number;
 
   if (content === '0' || content === 'null' ) {
     displayContent = '-';
   } else {
-    const formatted = content < 0 
-      ? `- %‌${Math.abs(content)}`
-      : (isNaN(content) ?content:`%‌${content}`);
+    const numericContent=typeof(content)==='string'?parseFloat(content) :content;
+    const formatted =numericContent < 0 
+      ? `- %‌${Math.abs(numericContent)}`
+      : (isNaN(numericContent) ?content:`%‌${numericContent}`);
     displayContent = toPersianNumbers(formatted);
   }
 

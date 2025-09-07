@@ -3,16 +3,37 @@ import {TableRow} from './TableRow';
 import {getData} from '../data/statsdata';
 import {summaryRows} from '../data/statsdata';
 import { useData } from '../data/datacontext';
+import { Interface } from 'readline';
 
+interface hoveredCellProp
+{
+  yearIndex:Number;
+  monthIndex:Number;
+  
+}
 
+interface StatsTableProp
+{
+  hoveredMonthIndex :Number;
+  hoveredYearValue :Number;
+  hoveredCell :hoveredCellProp;
+  onYearHover:(yearIdx:Number,onYearHover:boolean)=>void;
+  onCellHover:(yearIdx:Number, monthIdx :Number, hovering:boolean)=>void
+}
 
-export const StatsTable = ({ hoveredMonthIndex, hoveredYearValue,hoveredCell, onYearHover,onCellHover}) => {
+interface dataProp{
+
+  year:number;
+  nums:number[];
+
+}
+
+export const StatsTable = ({ hoveredMonthIndex, hoveredYearValue,hoveredCell, onYearHover,onCellHover}:StatsTableProp) => {
   
   const {data,loading}=useData();
-  const [statsData,setStatsData]=useState([]);
-  const [summaryData,setSummaryData]=useState([]);
+  const [statsData,setStatsData]=useState<dataProp[]>([]);
+  const [summaryData,setSummaryData]=useState<dataProp[]>([]);
   
-  console.log(data);
   useEffect(() => {
   if (data) {
     setStatsData(getData(data));
