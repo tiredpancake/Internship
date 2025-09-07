@@ -1,9 +1,7 @@
 import React from 'react';
 import {CellCards} from './CellCards';
 import { toPersianNumbers, getColor } from '../utils/conversion';
-import { cn
-
- } from '../utils/cn';
+import { cn } from '../utils/cn';
 export const TableRow = ({
   title,
   nums,
@@ -14,6 +12,7 @@ export const TableRow = ({
   hoveredYearValue,
   onYearHover
 }) => {
+
   const titleStr = title?.toString();
   const isSummaryRow = ['میانگین', 'انحراف معیار'].includes(titleStr);
   const isStandardDeviation = titleStr === 'انحراف معیار';
@@ -62,7 +61,7 @@ export const TableRow = ({
             (isSummaryRow || isHoveredCell || isHoveredColumn || isHoveredRow || !shouldDim) && getColor(num),
             (!isSummaryRow && shouldDim) &&'bg-white border border-gray-300 text-zinc-500 font-semibold',
           );
-          
+
           return (
             <div
               key={`${yearIndex}-${idx}`}

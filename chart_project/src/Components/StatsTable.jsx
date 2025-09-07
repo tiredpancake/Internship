@@ -2,32 +2,24 @@ import React, { useEffect, useState } from 'react'
 import {TableRow} from './TableRow'; 
 import {getData} from '../data/statsdata';
 import {summaryRows} from '../data/statsdata';
+import { useData } from '../data/datacontext';
 
 
 
 export const StatsTable = ({ hoveredMonthIndex, hoveredYearValue,hoveredCell, onYearHover,onCellHover}) => {
   
+  const {data,loading}=useData();
   const [statsData,setStatsData]=useState([]);
   const [summaryData,setSummaryData]=useState([]);
-
   
-  useEffect(()=>{
-    const fetchData=async()=>{
-      const data=await getData();
-      setStatsData(data);
-    }
-
-  fetchData();
-  },[])
-
-  useEffect(()=>{
-    const fetchData=async()=>{
-      const data=await summaryRows();
-      setSummaryData(data);
-    }
-
-  fetchData();
-  },[])
+  console.log(data);
+  useEffect(() => {
+  if (data) {
+    setStatsData(getData(data));
+    setSummaryData(summaryRows(data));
+  }
+  }, [data]);
+  
     
   return (
     <div className=" font-vazirmatn flex flex-col border-2 mt-4 py-6 pl-6 max-w-7xl mx-auto rounded-2xl h-5xl gap-4 overflow-y-auto">

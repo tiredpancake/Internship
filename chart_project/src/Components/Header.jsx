@@ -2,17 +2,18 @@ import React, { useEffect, useState } from 'react';
 import {CellCards} from './CellCards'; 
 import {getMonths } from '../data/statsdata';
 import { cn } from '../utils/cn';
+import { useData } from '../data/datacontext';
 
 export const Header = ({ onMonthHover, hoveredMonthIndex }) => {
   const [months, setMonths] = useState([]);
-
+  const {data,loading}=useData();
+  
+  
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await getMonths();
-      setMonths(data);
-    };
-    fetchData();
-  }, []);
+  if (data) {
+    setMonths(getMonths(data));
+  }
+  }, [data]);
 
   return (
     <div className="font-vazirmatn flex flex-row-reverse font-semibold bg-gray-100 max-w-7xl h-12 mx-auto px-4 mt-10 rounded-t-lg rounded-b-md items-center ">

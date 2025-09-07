@@ -1,24 +1,9 @@
-import axios from "axios";
-const url = "https://mocki.io/v1/91448c9c-9928-41ce-a936-54d2832ff012";
+import { useData } from "./datacontext";
 
-// Single function to fetch all data
-export const fetchAllData = async () => {
+export const getData = (responseData) => {
   try {
-    const { data } = await axios.get(url);
-    return data;
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    return null;
-  }
-};
-
-// Modify existing functions to use the cached data
-export const getData = async (cachedData = null) => {
-  try {
-    const data = cachedData || await fetchAllData();
-    if (!data) return [];
-    
-    const { rows, data: values } = data;
+    console.log(responseData)
+    const { rows, data: values } = responseData;
     return rows.map((year, index) => ({
       year,
       nums: values[index]
@@ -29,10 +14,8 @@ export const getData = async (cachedData = null) => {
   }
 };
 
-export const summaryRows = async (cachedData = null) => {
+export const summaryRows =(data) => {
   try {
-    const data = cachedData || await fetchAllData();
-    if (!data) return [];
     
     const columns = transposeToColumns(data.data);
     const { averages, stdDevs } = calculateSummaryStats(columns);
@@ -47,11 +30,8 @@ export const summaryRows = async (cachedData = null) => {
   }
 };
 
-export const getMonths = async (cachedData = null) => {
+export const getMonths =  (data) => {
   try {
-    const data = cachedData || await fetchAllData();
-    if (!data) return [];
-    
     return data.columns;
   } catch (error) {
     console.error("Error Fetching months:", error);
