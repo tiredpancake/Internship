@@ -1,5 +1,3 @@
-import { useData } from "./datacontext";
-
 interface ApiData {
   columns: string[];           
   rows: string[];              
