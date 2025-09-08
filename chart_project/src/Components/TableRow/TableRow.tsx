@@ -1,7 +1,7 @@
 import React from 'react';
-import {CellCards} from './CellCards';
-import { toPersianNumbers, getColor } from '../utils/conversion';
-import { cn } from '../utils/cn';
+import {CellCards} from '../CellCards/CellCards';
+import { toPersianNumbers, getColor } from '../../utils/conversion';
+import { cn } from '../../utils/cn';
 
 
 interface hoveredCellProp

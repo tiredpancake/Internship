@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import {Header} from '../Components/Header';
-import {StatsTable} from '../Components/StatsTable';
+import {Header} from '../../Components/Header/Header';
+import {StatsTable} from '../../Components/StatsTable/StatsTable';
 
 export const StatsTableContainer = () => {
   const[hoverMonthIndex,setHoverMonthIndex]=useState<number |null>(null);

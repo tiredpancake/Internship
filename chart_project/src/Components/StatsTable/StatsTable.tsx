@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import {TableRow} from './TableRow'; 
-import {getData} from '../data/statsdata';
-import {summaryRows} from '../data/statsdata';
-import { useData } from '../data/datacontext';
+import {TableRow} from '../TableRow/TableRow'; 
+import {getData} from '../../data/statsdata';
+import {summaryRows} from '../../data/statsdata';
+import { useData } from '../../data/datacontext';
 import { Interface } from 'readline';
 
 interface hoveredCellProp

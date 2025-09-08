@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import {CellCards} from './CellCards'; 
-import {getMonths } from '../data/statsdata';
-import { cn } from '../utils/cn';
-import { useData } from '../data/datacontext';
+import {CellCards} from '../CellCards/CellCards'; 
+import {getMonths } from '../../data/statsdata';
+import { cn } from '../../utils/cn';
+import { useData } from '../../data/datacontext';
 import { Interface } from 'readline';
 
 interface HeaderProps{
