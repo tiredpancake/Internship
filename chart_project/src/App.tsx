@@ -1,5 +1,5 @@
 
-import {StatsTableContainer} from './pages/StatsTableContainer/StatsTableContainer';
+import {StatsTableContainer} from './Components/StatsTableContainer/StatsTableContainer';
 import { DataProvider } from './data/datacontext';
 
 
@@ -8,7 +8,6 @@ function App() {
     <DataProvider>
       <StatsTableContainer/>
     </DataProvider>
-    
   );
 }
 
