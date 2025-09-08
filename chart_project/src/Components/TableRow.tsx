@@ -81,10 +81,12 @@ export const TableRow = ({
             !isHoveredColumn &&
             !isHoveredRow;
 
-          const bgClass=cn(
-            isSummaryRow && isStandardDeviation && 'bg-gray-100',
-            (isSummaryRow || isHoveredCell || isHoveredColumn || isHoveredRow || !shouldDim) && num !== null && getColor(num),
-            (!isSummaryRow && shouldDim) &&'bg-white border border-gray-300 text-zinc-500 font-semibold',
+          const bgClass = cn(
+            isSummaryRow && isStandardDeviation
+              ? 'bg-gray-100'
+              : ((isSummaryRow && !isStandardDeviation) || isHoveredCell || isHoveredColumn || isHoveredRow || !shouldDim) && num !== null
+                ? getColor(num)
+                : (!isSummaryRow && shouldDim) && 'bg-white border border-gray-300 text-zinc-500 font-semibold'
           );
 
           return (
