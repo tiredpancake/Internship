@@ -7,10 +7,10 @@ import { Interface } from 'readline';
 
 interface HeaderProps{
   onMonthHover:(idx:number,hovering:boolean)=>void;
-  hoveredMonthIndex :number;
+  hoveredMonthIndex :number |null;
 }
 export const Header = ({ onMonthHover, hoveredMonthIndex } :HeaderProps) => {
-  const [months, setMonths] = useState([]);
+  const [months, setMonths] = useState<string[]>([]);
   const {data,loading}=useData();
   
   

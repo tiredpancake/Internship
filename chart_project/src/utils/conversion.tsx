@@ -1,6 +1,6 @@
 import { cn } from "./cn";
 
-export const toPersianNumbers = (input) => {
+export const toPersianNumbers = (input :string|number) => {
   if (input === null || input === undefined || input === '0' || input === 0 || input === '0%') return '-';
   
   const persianDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
@@ -11,7 +11,7 @@ export const toPersianNumbers = (input) => {
 };
 
 
-export const getColor = (value) => {
+export const getColor = (value:number ) => {
   return cn({
     'bg-transparent': value === null || value === undefined,
     'bg-green-600': value >= 8.1,

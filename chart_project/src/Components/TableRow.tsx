@@ -6,20 +6,20 @@ import { cn } from '../utils/cn';
 
 interface hoveredCellProp
 {
-  yearIndex:number;
-  monthIndex:number;
+  yearIndex:number |null;
+  monthIndex:number |null;
   
 }
 
 interface tableRowProps
 {
   title:number| string;
-  nums:number[]
-  yearIndex:number
-  hoveredMonthIndex:number
+  nums:(number|null)[]
+  yearIndex:number |null;
+  hoveredMonthIndex:number|null
   hoveredCell :hoveredCellProp;
   onCellHover:(yearIdx:number, monthIdx :number, hovering:boolean)=>void;
-  hoveredYearValue:number;
+  hoveredYearValue:number|null;
   onYearHover:(yearIdx:number,onYearHover:boolean)=>void;
 
 
@@ -54,8 +54,8 @@ export const TableRow = ({
       <div className="flex-shrink-0 w-32 mr-2">
         <div
           className="text-right font-semibold h-8 px-3 py-1 rounded-md whitespace-nowrap overflow-hidden text-ellipsis"
-          onMouseEnter={() => onYearHover(title, true)}
-          onMouseLeave={() => onYearHover(title, false)}
+          onMouseEnter={() => onYearHover(Number(title), true)}
+          onMouseLeave={() => onYearHover(Number(title), false)}
         >
           <span
             className={cn('px-2 py-1 rounded-md transition-colors cursor-pointer   hover:bg-blue-600',
@@ -83,15 +83,15 @@ export const TableRow = ({
 
           const bgClass=cn(
             isSummaryRow && isStandardDeviation && 'bg-gray-100',
-            (isSummaryRow || isHoveredCell || isHoveredColumn || isHoveredRow || !shouldDim) && getColor(num),
+            (isSummaryRow || isHoveredCell || isHoveredColumn || isHoveredRow || !shouldDim) && num !== null && getColor(num),
             (!isSummaryRow && shouldDim) &&'bg-white border border-gray-300 text-zinc-500 font-semibold',
           );
 
           return (
             <div
               key={`${yearIndex}-${idx}`}
-              onMouseEnter={() => onCellHover?.(yearIndex, idx, true)}
-              onMouseLeave={() => onCellHover?.(yearIndex, idx, false)}
+              onMouseEnter={() => onCellHover?.(Number(yearIndex), idx, true)}
+              onMouseLeave={() => onCellHover?.(Number(yearIndex), idx, false)}
             >
               <CellCards
                 heightClass="h-10"

@@ -7,23 +7,24 @@ import { Interface } from 'readline';
 
 interface hoveredCellProp
 {
-  yearIndex:number;
-  monthIndex:number;
+  yearIndex:number |null;
+  monthIndex:number |null ;
   
 }
 
 interface StatsTableProp
 {
-  hoveredMonthIndex :number;
-  hoveredYearValue :number;
+  hoveredMonthIndex :number|null;
+  hoveredYearValue :number |null;
+  hoveredCell :hoveredCellProp
   onYearHover:(yearIdx:number,onYearHover:boolean)=>void;
   onCellHover:(yearIdx:number, monthIdx :number, hovering:boolean)=>void
 }
 
 interface dataProp{
 
-  year:number;
-  nums:number[];
+  year:string;
+  nums:(number|null)[];
 
 }
 

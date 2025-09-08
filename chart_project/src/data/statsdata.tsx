@@ -1,6 +1,23 @@
 import { useData } from "./datacontext";
 
-export const getData = (responseData) => {
+interface ApiData {
+  columns: string[];           
+  rows: string[];              
+  data: (number | null)[][];   
+}
+interface YearData{
+  year:string;
+  nums:(number |null)[]
+
+}
+interface SummaryData{
+  year:string;
+  nums:number []
+
+}
+
+
+export const getData = (responseData :ApiData ):YearData[] => {
   try {
     console.log(responseData)
     const { rows, data: values } = responseData;
@@ -14,7 +31,7 @@ export const getData = (responseData) => {
   }
 };
 
-export const summaryRows =(data ) => {
+export const summaryRows =(data :ApiData ) :SummaryData[]=> {
   try {
     
     const columns = transposeToColumns(data.data);
@@ -30,7 +47,7 @@ export const summaryRows =(data ) => {
   }
 };
 
-export const getMonths =  (data) => {
+export const getMonths =  (data:ApiData):string[] => {
   try {
     return data.columns;
   } catch (error) {
@@ -39,16 +56,18 @@ export const getMonths =  (data) => {
   }
 };
 
-const transposeToColumns = (rows) => {
+const transposeToColumns = (rows: (number | null)[][]): (number | null)[][] => {
   const columnCount = 12;
-  return Array.from({ length: columnCount }, (_, colIndex) => 
+  return Array.from({ length: columnCount }, (_, colIndex) =>
     rows.map(row => row[colIndex])
   );
 };
 
-const calculateSummaryStats = (columns) => {
-  const averages = [];
-  const stdDevs = [];
+
+const calculateSummaryStats = (columns: (number | null)[][]): { averages: number[]; stdDevs: number[] } => {
+  const averages: number[] = [];
+  const stdDevs: number[] = [];
+
 
   columns.forEach(col => {
     const values = col.filter(val => val != null);
