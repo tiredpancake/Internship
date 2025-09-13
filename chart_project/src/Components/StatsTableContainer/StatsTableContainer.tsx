@@ -37,7 +37,7 @@ export const StatsTableContainer = () => {
   const handleMonthHover = (index: number, hovering: boolean) => {
     setHoverMonthIndex(hovering ? index : null);
   };
-
+  
   const handleYearHover = (yearIndex: number, hovering: boolean) => {
     setHoverYearValue(hovering ? yearIndex : null);
   };
@@ -55,8 +55,9 @@ export const StatsTableContainer = () => {
   };
 
   const renderMonthHeaders = () => (
-    <div className="flex flex-row-reverse gap-3.5">
-      {months.map((month, index) => {
+    <div className="flex flex-row-reverse gap-3.5 ">
+     
+         {months.map((month, index) => {
         const isHovered = hoverMonthIndex === index;
         const isAnyHovered = hoverMonthIndex !== null;
         const isOther = isAnyHovered && hoverMonthIndex !== index;
@@ -70,18 +71,20 @@ export const StatsTableContainer = () => {
         return (
           <div
             key={index}
-            onMouseEnter={() => handleMonthHover(index, true)}
+            onMouseOver={() => handleMonthHover(index, true)}
             onMouseLeave={() => handleMonthHover(index, false)}
           >
             <CellCards
-              heightClass="h-7.5 rounded-md py-2 px-8 font-bold text-base"
+              heightClass="h-7.5 rounded-md py-2 px-8 font-bold text-base "
               bgClass={cellClass}
               content={month}
             />
           </div>
+          
         );
       })}
-    </div>
+      </div>
+  
   );
 
   const renderDataRow = (row: DataProp, index: number, isSummary: boolean = false) => {
@@ -98,7 +101,7 @@ export const StatsTableContainer = () => {
         <div className="flex-shrink-0 w-32 mr-2">
           <div
             className="text-right font-semibold h-8 px-3 py-1 rounded-md whitespace-nowrap overflow-hidden text-ellipsis"
-            onMouseEnter={() => handleYearHover(Number(title), true)}
+            onMouseOver={() => handleYearHover(Number(title), true)}
             onMouseLeave={() => handleYearHover(Number(title), false)}
           >
             <span
@@ -137,11 +140,12 @@ export const StatsTableContainer = () => {
             return (
               <div
                 key={`${yearIndex}-${idx}`}
-                onMouseEnter={() => handleCellHover(Number(yearIndex), idx, true)}
+                onMouseOver={() => handleCellHover(Number(yearIndex), idx, true)}
                 onMouseLeave={() => handleCellHover(Number(yearIndex), idx, false)}
               >
                 <CellCards
-                  heightClass={isSummary ? "h-10" : "h-10 py-4"}
+                  heightClass={cn('h-10 py-4',
+                  isSummary && "h-10" )}
                   bgClass={bgClass}
                   content={`${num}`}
                 />
@@ -156,7 +160,7 @@ export const StatsTableContainer = () => {
   return (
     <div>
       <div className="font-vazirmatn flex flex-row-reverse font-semibold bg-gray-100 max-w-7xl h-12 mx-auto px-4 mt-10 rounded-t-lg rounded-b-md items-center">
-        <div className="pl-20 text-center cursor-pointer ml-1 mr-4">سال</div>
+        <div className="pl-20 text-center cursor-pointer ml-1 mr-3">سال</div>
         {renderMonthHeaders()}
       </div>
 

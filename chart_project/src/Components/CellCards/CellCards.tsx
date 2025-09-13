@@ -24,7 +24,7 @@ export const CellCards = ({ heightClass , bgClass , content, hover}:CellCardsPro
 
   return (
     <div
-      className={cn('flex justify-center font-medium  text-sm cursor-pointer   items-center w-20 rounded-md ',
+      className={cn(' transition-all flex justify-center font-medium  text-sm cursor-pointer   items-center w-20 rounded-md ',
         heightClass, 
         displayContent ==='-' ? 'bg-transparent':bgClass,
          hover )}
