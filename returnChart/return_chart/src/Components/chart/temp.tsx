@@ -36,9 +36,8 @@ const generateSeries = (
     type: "line",
     name: label,
     color,
-    marker: { enabled: false, symbol },
+    marker: { enabled: false },
     showInLegend: true,
-    legendSymbol: "lineMarker", 
     data: data.map((point, index) => ({
       x: point[0],
       y: point[1],
@@ -52,18 +51,20 @@ export const ChartPage: React.FC = () => {
     chart: {
       type: "line",
       backgroundColor: "transparent",
-      marginTop:50,
+        marginTop: 50, // Add some top margin if needed
+
     },
     title: { text: "" },
    xAxis: {
   type: "datetime",
-  lineWidth: 0,      
-  tickLength: 0,    
+  lineWidth: 0,      // remove axis line
+  tickLength: 0,     // remove tick marks
   labels: {
     formatter: function () {
+      // Convert value into Jalali dayjs
       const date = dayjs(this.value as number).calendar("jalali").locale("fa");
       const day = date.date();
-      const month = date.format("MMM"); 
+      const month = date.format("MMM"); // e.g. فرو, ارد
 
       if (day === 1 || day === 10 || day === 20) {
         return `${day} ${month}`;
@@ -72,7 +73,7 @@ export const ChartPage: React.FC = () => {
     },
     style: { fontFamily: "vazirmatn" },
   },
-  tickInterval: 24 * 3600 * 1000,
+  tickInterval: 24 * 3600 * 1000, // force daily ticks
   crosshair: {
     color: "#8C9096",
     dashStyle: "Dash",
@@ -92,9 +93,8 @@ export const ChartPage: React.FC = () => {
     rotation: 0,   
     offset: 0,     
     y: -40,       
-    x: -12  ,      
+    x: -10  ,      
      style: {
-      color:'#05070C',
       fontWeight: "bold",
       fontFamily: "vazirmatn"
     }
@@ -105,6 +105,7 @@ export const ChartPage: React.FC = () => {
         }
        },
     },
+
     tooltip: {
       shared: true,
       useHTML: true,
@@ -164,12 +165,12 @@ export const ChartPage: React.FC = () => {
         
         <!-- percentage on left -->
         <span style="flex:0; text-align:left; margin-right:10px;">
-          ${point.y?.toFixed(2)}%
+          ${point.y}%
         </span>
 
         <!-- name + marker on right -->
         <span style="flex:1; display:flex; align-items:center; gap:4px; justify-content:flex-end;">
-          بازده ${point.series.name}
+          :بازده ${point.series.name}
           <span style="${shapeStyle}"></span>
         </span>
       </div>
