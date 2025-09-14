@@ -48,6 +48,17 @@ const generateSeries = (
 };
 
 export const ChartPage: React.FC = () => {
+
+
+  const toPersianNumbers = (input :string|number) => {
+  
+  const persianDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+  
+  return input.toString().replace(/\d/g, (digit) => {
+    return persianDigits[parseInt(digit)];
+  });
+};
+
   const options: Highcharts.Options = {
     chart: {
       type: "line",
@@ -66,7 +77,7 @@ export const ChartPage: React.FC = () => {
       const month = date.format("MMM"); 
 
       if (day === 1 || day === 10 || day === 20) {
-        return `${day} ${month}`;
+        return `${toPersianNumbers(day)} ${month}`;
       }
       return "";
     },
@@ -86,6 +97,7 @@ export const ChartPage: React.FC = () => {
       min: 0,
       max: 60,
       tickInterval: 10,
+      
       title: { 
     text: "بازده",
     align: "high", 
@@ -99,9 +111,12 @@ export const ChartPage: React.FC = () => {
       fontFamily: "vazirmatn"
     }
   },
-      labels: { 
+      labels: {
+        style: {
+      fontFamily: "vazirmatn"
+    }, 
         formatter:function(){
-      return this.value === 0 ? "0" : this.value + "%";
+      return this.value === 0 ? toPersianNumbers(0) : toPersianNumbers(this.value) + "%";
         }
        },
     },
@@ -123,9 +138,11 @@ export const ChartPage: React.FC = () => {
       const day = date.format("D");
       const month = date.format("MMMM");
 
-      let content = `<div style="text-align:right; font-weight:bold; margin-bottom:4px;"> ${day} ${month} </div>`;
-
-      const sortedPoints = [...(this.points || [])].sort((a, b) => {
+    let content = `<div style="display:flex; justify-content:flex-start; margin-bottom:4px; direction:rtl;">
+      <span style="margin-left:4px;">${toPersianNumbers(day)}</span>
+      <span>${month}</span>
+    </div>`; 
+     const sortedPoints = [...(this.points || [])].sort((a, b) => {
         if (a.series.name === "شاخص کل") return 1;
         if (b.series.name === "شاخص کل") return -1;
         return 0;
@@ -140,6 +157,8 @@ export const ChartPage: React.FC = () => {
       height: 10px; 
       background-color:${point.color};
       border-radius:50%;
+        border: 1px solid white;
+
     `;
 
     if (symbol === "square") {
@@ -148,32 +167,38 @@ export const ChartPage: React.FC = () => {
         height: 10px; 
         background-color:${point.color};
         border-radius:2px;
+          border: 1px solid white;
+
       `;
-    } else if (symbol === "triangle") {
-      shapeStyle = `
-        width: 0;
-        height: 0;
-        border-left: 6px solid transparent;
-        border-right: 6px solid transparent;
-        border-bottom: 10px solid ${point.color};
-      `;
-    }
+    } if (symbol === "triangle") {
+  shapeStyle = `
+    width: 12px;
+    height: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border: 1.5px solid white;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    background-color: ${point.color};
+  `;}
 
     content += `
-      <div style="display:flex; justify-content: space-between; align-items:center; margin-top:2px;">
+      <div style="display:flex; justify-content: space-between; align-items:center; margin-top:10px; margin-left:5px">
         
         <!-- percentage on left -->
         <span style="flex:0; text-align:left; margin-right:10px;">
-          ${point.y?.toFixed(2)}%
+      ${toPersianNumbers(point.y || 0)}%
         </span>
 
         <!-- name + marker on right -->
         <span style="flex:1; display:flex; align-items:center; gap:4px; justify-content:flex-end;">
-          بازده ${point.series.name}
+          :بازده ${point.series.name}
           <span style="${shapeStyle}"></span>
-        </span>
-      </div>
-    `;
+      
+    </span>
+  </div>
+`;
   });
 
   return content;
@@ -192,17 +217,17 @@ export const ChartPage: React.FC = () => {
     },
 
     series: [
-      generateSeries("شاخص کل", "#c0392b", "square"),
-      generateSeries("صندوق های سهامی", "#f39c12", "triangle"),
-      generateSeries("صندوق سهم آشنا", "#2980b9", "circle"),
+      generateSeries("شاخص کل", "#DD1919", "square"),
+      generateSeries("صندوق های سهامی", "#FFB300", "triangle"),
+      generateSeries("صندوق سهم آشنا", "#0072F0", "circle"),
     ],
 
     credits: { enabled: false },
   };
 
   return (
-    <div className="flex flex-col items-center p-6 bg-white rounded-2xl shadow-md w-full max-w-4xl mx-auto">
-      <button className="self-end flex items-center gap-2 px-2 py-1 mb-4 text-sm rounded-xl text-[#009695] hover:bg-green-200 border-2 border-[#009695]">
+    <div className="font-vazirmatn flex flex-col items-center p-6 bg-white rounded-2xl shadow-md w-full max-w-3xl mx-auto">
+      <button className=" place-self-end flex items-center  -mb-6 gap-2 px-2 py-1  mr-20 text-base rounded-md  text-[#009695] hover:bg-green-200 border-2 border-[#009695]">
         مقایسه
         <img src={svgImg} alt="compare" className="w-4 h-4" />
       </button>
