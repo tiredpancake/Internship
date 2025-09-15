@@ -7,6 +7,7 @@ import dayjs from "dayjs";
 import jalali from "jalali-plugin-dayjs";
 import utc from "dayjs/plugin/utc";
 import { cn } from "../../utils/cn"; 
+import { toPersianNumbers } from "../../utils/conversion";
 
 
 dayjs.extend(jalali);
@@ -48,12 +49,6 @@ const generateSeries = (
 };
 
 export const ChartPage: React.FC = () => {
-  const toPersianNumbers = (input: string | number) => {
-    const persianDigits = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
-    return input
-      .toString()
-      .replace(/\d/g, (digit) => persianDigits[parseInt(digit)]);
-  };
 
   const options: Highcharts.Options = {
     chart: {
