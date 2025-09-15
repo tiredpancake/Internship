@@ -1,7 +1,6 @@
-import { cn } from "./cn";
 
 export const toPersianNumbers = (input :string|number) => {
-  if (input === null || input === undefined || input === '0' || input === 0 || input === '0%') return '-';
+  if (input === null || input === undefined ) return '-';
   
   const persianDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
   
