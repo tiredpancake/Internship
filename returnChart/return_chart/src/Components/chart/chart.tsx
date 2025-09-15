@@ -106,7 +106,7 @@ export const ChartPage: React.FC = () => {
         },
       },
       labels: {
-        style: { fontFamily: "vazirmatn" },
+        style: { fontFamily: "vazirmatn,senserif" },
         formatter: function () {
           return  cn( this.value!==0 && toPersianNumbers(this.value) + "%",
             this.value === 0 && toPersianNumbers(0),
@@ -181,7 +181,8 @@ export const ChartPage: React.FC = () => {
       const color = s.color;
 
       const marker = `<span style="
-        display:inline-block;width:10px;height:10px;margin-top:1px;
+       width:10px;height:10px;margin-top:1px;margin-left:10px;
+
         background:${color};
         ${cn(
           markerShape === "square"&&"border-radius:2px;",
@@ -192,7 +193,7 @@ export const ChartPage: React.FC = () => {
 
     return `<span style="display:flex; align-items:center;justify-content:flex-end;direction:rtl;gap:8px;line-height:14px;"> ${marker}
         <span style="margin-top:1px" >${s.name}: </span>
-        <span style="font-weight:bold;color:#00822D ;margin-top:5px">${num}%</span>
+        <span style="font-weight:bold;color:#00822D ;margin-top:5px;">${num}%</span>
       </span>`;
   },
   
