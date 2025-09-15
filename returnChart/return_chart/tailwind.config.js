@@ -8,6 +8,12 @@ module.exports = {
       fontFamily: {
         vazirmatn: ['Vazirmatn', 'sans-serif'],
       },
+      colors:{
+            customGreen: '#009695',
+            
+
+            
+        },
     },
   },
   plugins: [],
