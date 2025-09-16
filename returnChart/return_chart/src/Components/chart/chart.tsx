@@ -168,7 +168,7 @@ export const ChartPage: React.FC = () => {
     rtl: true,
     align: "left",         
     layout: "horizontal",   
-    symbolPadding: -15,               
+    symbolPadding: -16,               
     symbolWidth: 20,                 
     labelFormatter: function () {
       const s = this as Highcharts.Series;
@@ -191,14 +191,19 @@ export const ChartPage: React.FC = () => {
         }
       "></span>`;
 
-    return `<span style="display:flex; align-items:center;justify-content:flex-end;direction:rtl;gap:8px;line-height:14px;"> ${marker}
-        <span style="margin-top:1px" >${s.name}: </span>
-        <span style="font-weight:bold;color:#00822D ;margin-top:5px;">${num}%</span>
-      </span>`;
+    return `<span style="display:flex;align-items:center;justify-content:flex-end;direction:rtl;gap:8px;line-height:14px;">
+            ${marker}
+            <span style="margin-top:1px">${s.name}:</span>
+            <span style="display:inline-block;min-width:5px;
+                         text-align:left;font-weight:bold;color:#00822D;margin-top:5px;">
+              ${num}%
+            </span>
+          </span>`;
+
   },
   
   itemStyle: {
-    fontFamily: "vazirmatn",
+    fontFamily: "vazirmatn,monospace",
     fontSize: "14px",
     color: "#05070C",
     textAlign:'center',
