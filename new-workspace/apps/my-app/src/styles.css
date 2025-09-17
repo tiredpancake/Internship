@@ -1,14 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* You can add global styles to this file, and also import other style files */
+@import './assets/fonts/vazirmant.css';
+
+
 /* @font-face {
-  font-family: 'Vazirmatn';
-  src: url('@/assets/fonts/ttf/Vazirmatn-RD-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
+  font-family: 'vazirmatn';
+  src: url('./assets/fonts/Vazirmatn-FD-Black.ttf');
+  font-weight: 100;
+  font-display: swap;
 } */
-body {
-  font-family: 'Vazirmatn', sans-serif;
+
+*{
+  font-family: 'vazirmatn', sans-serif;
   font-feature-settings: "locl";
 }

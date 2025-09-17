@@ -13,7 +13,7 @@ module.exports = {
    theme: {
     extend: {
       fontFamily: {
-        vazirmatn: ['Vazirmatn', 'sans-serif'],
+        vazirmatn: ['vazirmatn'],
       },
       colors:{
             green500: '#33A159',

@@ -16,6 +16,12 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "es2022",
-    "customConditions": ["@new-workspace/source"]
+    "customConditions": ["@new-workspace/source"],
+    "baseUrl": ".",
+    "paths": {
+      "@assets/*": ["apps/my-app/src/assets/*"],
+      "@components/*": ["apps/my-app/src/components/*"],
+      "@styles/*": ["apps/my-app/src/styles/*"]
+    }
   }
 }
