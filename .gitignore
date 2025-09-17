@@ -52,3 +52,9 @@ public/static/
 .idea/*
 *.sublime-workspace
 *.sublinme-project
+
+
+.nx/cache
+.nx/workspace-data
+.cursor/rules/nx-rules.mdc
+.github/instructions/nx.instructions.md
