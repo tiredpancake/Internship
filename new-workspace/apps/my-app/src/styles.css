@@ -1,13 +1,13 @@
+/* @import '../public/fonts/vazirmant.css'; */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import './assets/fonts/vazirmant.css';
 
 
 /* @font-face {
   font-family: 'vazirmatn';
-  src: url('./assets/fonts/Vazirmatn-FD-Black.ttf');
-  font-weight: 100;
+  src: url('/fonts/Vazirmatn-FD-Black.ttf');
+  font-weight: 900;
   font-display: swap;
 } */
 

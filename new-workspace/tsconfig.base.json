@@ -21,7 +21,9 @@
     "paths": {
       "@assets/*": ["apps/my-app/src/assets/*"],
       "@components/*": ["apps/my-app/src/components/*"],
-      "@styles/*": ["apps/my-app/src/styles/*"]
+      "@styles/*": ["apps/my-app/src/styles/*"],
+        "@myapp/*": ["apps/my-app/*"]
+
     }
   }
 }

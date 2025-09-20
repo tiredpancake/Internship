@@ -14,6 +14,18 @@ module.exports = {
       htmlAcceptHeaders: ['text/html', 'application/xhtml+xml'],
     },
   },
+  module: {
+    rules: [
+      {
+        test: /\.(ttf|woff|woff2|eot)$/,  // fonts
+        type: 'asset/resource',           // webpack 5 asset module
+      },
+      {
+        test: /\.css$/,                   // CSS
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
+      },
+    ],
+  },
   plugins: [
     new NxAppWebpackPlugin({
       tsConfig: './tsconfig.app.json',
@@ -27,8 +39,6 @@ module.exports = {
       optimization: process.env['NODE_ENV'] === 'production',
     }),
     new NxReactWebpackPlugin({
-      // Uncomment this line if you don't want to use SVGR
-      // See: https://react-svgr.com/
       // svgr: false
     }),
   ],
