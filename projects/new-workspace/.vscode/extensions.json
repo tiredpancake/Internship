@@ -3,6 +3,7 @@
     "nrwl.angular-console",
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
-    "builder.builder"
+    "builder.builder",
+    "ms-playwright.playwright"
   ]
 }
