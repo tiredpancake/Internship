@@ -4,7 +4,7 @@ This repository contains all my internship projects, organized under the `/proje
 
 ## 📁 Project List
 
-| Project Name        | Description                              | Stack/Notes                   |                                     |
+| Project Name        | Description                              | Stack/Notes                   | Note                                |
 |-------------------- |----------------------------------------- |-------------------------------|-------------------------------------|
 | chart-project       | Data visualization dashboards            | React + TSX                   | years+months+percentage             |  
 | classbon            | Classroom management app                 | Next.js + TSX +Tailwind       | next large scale project            |
