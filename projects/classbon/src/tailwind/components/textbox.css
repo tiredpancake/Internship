@@ -1,0 +1,88 @@
+@layer components {
+  .textbox {
+    @apply h-12 px-4 text-sm leading-loose flex-shrink border dark:border-base-25 dark:bg-transparent rounded-lg dark:text-base dark:placeholder-base-content dark:placeholder-opacity-50;
+  }
+
+  .textbox:focus {
+    @apply outline outline-2 outline-offset-2;
+  }
+
+  /* --- Variants --- */
+  .textbox-ghost {
+    @apply dark:bg-opacity-5;
+  }
+  .textbox-ghost:focus {
+    @apply dark:bg-opacity-100 dark:outline-primary dark:border-primary;
+    box-shadow: none;
+  }
+
+  .textbox-primary {
+    @apply dark:border-primary;
+  }
+  .textbox-primary:focus {
+    @apply dark:outline-primary;
+  }
+
+  .textbox-secondary {
+    @apply dark:border-secondary;
+  }
+  .textbox-secondary:focus {
+    @apply dark:outline-secondary;
+  }
+
+  .textbox-accent {
+    @apply dark:border-accent;
+  }
+  .textbox-accent:focus {
+    @apply dark:outline-accent;
+  }
+
+  .textbox-info {
+    @apply dark:border-info;
+  }
+  .textbox-info:focus {
+    @apply dark:outline-info;
+  }
+
+  .textbox-success {
+    @apply dark:border-success;
+  }
+  .textbox-success:focus {
+    @apply dark:outline-success;
+  }
+
+  .textbox-warning {
+    @apply dark:border-warning;
+  }
+  .textbox-warning:focus {
+    @apply dark:outline-warning;
+  }
+
+  .textbox-error {
+    @apply dark:border-error;
+  }
+  .textbox-error:focus {
+    @apply dark:outline-error;
+  }
+
+  /* --- Sizes --- */
+  .textbox-xs {
+    @apply h-6 px-2 text-xs leading-relaxed;
+  }
+  .textbox-sm {
+    @apply h-8 px-3 text-sm leading-8;
+  }
+  .textbox-md {
+    @apply h-12 px-4 text-sm leading-loose;
+  }
+  .textbox-lg {
+    @apply h-16 px-6 text-lg leading-loose;
+  }
+
+  /* --- Disabled --- */
+  .textbox-disabled,
+  .textbox:disabled,
+  .textbox[disabled] {
+    @apply cursor-not-allowed dark:border-base-200 dark:bg-base-200 dark:text-opacity-20 dark:placeholder-base-content dark:placeholder-opacity-20;
+  }
+}

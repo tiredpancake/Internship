@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+
+:root {
+  --gray-background: #F2F4F7;
+  --t-purple:#6941C6;
+  --t-custom-black:#101828;
+  --t-gray:#344054;
+  --marker:#53389E;
+  --t-second-gray:#475467;
+  --border:#D0D5DD;
+  --placeholder:#667085;
+  --btn-bg:#7F56D9;
+  --btn-ds:#C2BBFF;
+}
+
+@theme inline {
+  --color-gray-background: var(--gray-background);
+  --color-t-purple: var(--t-purple);
+  --color-t-custom-black:var(--text-custom-black);
+  --color-placeholder:var(--placeholder);
+  --color-btn-ds:var(--btn-ds);
+  --color-border:var(--border);
+  --color-btn-bg:var(--btn-bg);
+  --color-marker:var(--marker);
+  --color-t-second-gray:var(--t-second-gray);
+  --color-t-gray:var(--t-gray);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-geist-mono), monospace;
+}
+
+@layer base {
+  input[type="password"] {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+  }
+
+  input[type="password"]::-webkit-credentials-auto-fill-button,
+  input[type="password"]::-webkit-caps-lock-indicator,
+  input[type="password"]::-webkit-strong-password-auto-fill-button {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    position: absolute !important;
+    right: -10000px !important;
+  }
+
+  input[type="password"]::-ms-reveal {
+    display: none !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    opacity: 0 !important;
+  }
+
+  input[type="password"]::-ms-clear {
+    display: none !important;
+  }
+}
+
+@layer utilities {
+  .no-browser-eye {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    
+    &::-ms-reveal {
+      display: none !important;
+      visibility: hidden !important;
+      width: 0 !important;
+      height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      opacity: 0 !important;
+      position: absolute !important;
+      right: -10000px !important;
+    }
+    
+    &::-ms-clear {
+      display: none !important;
+    }
+    
+    &::-webkit-credentials-auto-fill-button {
+      display: none !important;
+      visibility: hidden !important;
+    }
+  }
+
+  .edge-no-reveal::-ms-reveal {
+    display: none !important;
+  }
+}
+
+@supports (-ms-ime-align: auto) or (-ms-accelerator: true) {
+  .no-browser-eye {
+    padding-right: 3rem !important; 
+  }
+  
+  input[type="password"] {
+    &::-ms-reveal {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+    }
+  }
+}
+
+body {
+font-family: var(--font-inter);}
