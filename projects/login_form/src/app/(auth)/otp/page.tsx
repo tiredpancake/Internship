@@ -2,22 +2,34 @@
 import React, { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import SignUp from '../signup/page';
-import Login from '../login/page';
+import SignUp from "../signup/page";
+import Login from "../login/page";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import Header from "../../../components/Header";
+import AuthRedirect from "../../../components/AuthRedirect";
 
-
-const Page = ({ phone ,mode,onGoBack}: { phone: string ;mode:'signup'|'login';onGoBack:() => void;}) => {
+const Page = ({
+  phone,
+  mode,
+  onGoBack,
+}: {
+  phone: string;
+  mode: "signup" | "login";
+  onGoBack: () => void;
+}) => {
   const inputsRef = useRef<HTMLInputElement[]>([]);
 
   console.log(mode);
   const getOtpValue = () => {
-  return inputsRef.current.map((input) => input?.value).join('');
+    return inputsRef.current.map((input) => input?.value).join("");
   };
-  const  [otpError ,setOtpError]=useState('');
+  const [otpError, setOtpError] = useState("");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => {
     const value = e.target.value;
 
     if (/^\d$/.test(value)) {
@@ -30,7 +42,10 @@ const Page = ({ phone ,mode,onGoBack}: { phone: string ;mode:'signup'|'login';on
     }
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, index: number) => {
+  const handleKeyDown = (
+    e: React.KeyboardEvent<HTMLInputElement>,
+    index: number
+  ) => {
     const key = e.key;
 
     if (key === "Backspace") {
@@ -43,36 +58,25 @@ const Page = ({ phone ,mode,onGoBack}: { phone: string ;mode:'signup'|'login';on
       inputsRef.current[index + 1]?.focus();
     }
   };
-  
 
+  const handleVerify = () => {
+    const enteredOTP = getOtpValue();
 
-
-const handleVerify = () => {
-  const enteredOTP = getOtpValue();
-
-  if (enteredOTP === '1234') {
-    if(mode=='login')
-    toast.success(" LoggedIn successfully!");
-    else if(mode=='signup')
-      toast.success('SignUP successfully!')
-  } else {
-    setOtpError('Incorrect code .')
-  }
-};
+    if (enteredOTP === "1234") {
+      if (mode == "login") toast.success(" LoggedIn successfully!");
+      else if (mode == "signup") toast.success("SignUP successfully!");
+    } else {
+      setOtpError("Incorrect code .");
+    }
+  };
 
   return (
     <div className="flex justify-center items-center p-10 flex-col lg:p-24">
-      <div className="flex items-center gap-2.5">
-        <Image src="/Vector.svg" alt="logo" width={8} height={8} className="h-8 w-8" />
-        <span className="font-bold text-3xl text-t-custom-black">ShiftWave</span>
-      </div>
+      <Header
+        title="Enter OTP"
+        subtitle="We have sent a OTP to your mobile number"
+      />
 
-      <div className="flex flex-col items-center mt-10 lg:mt-15">
-        <span className="text-t-gray text-2xl font-semibold whitespace-nowrap">Enter OTP</span>
-        <span className="text-center whitespace-nowrap text-t-second-gray mt-2 text-base font-normal px-1 lg:px-0">
-          We have sent an OTP to your mobile number
-        </span>
-      </div>
       <div className="flex flex-col items-center">
         <div className="flex justify-center items-center gap-1 md:gap-3 mt-6 flex-nowrap">
           {[0, 1, 2, 3].map((i) => (
@@ -81,39 +85,43 @@ const handleVerify = () => {
                 type="text"
                 maxLength={1}
                 ref={(el) => (inputsRef.current[i] = el!)}
-                onChange={(e) =>{ handleChange(e, i)
-                  setOtpError('');
+                onChange={(e) => {
+                  handleChange(e, i);
+                  setOtpError("");
                 }}
                 onKeyDown={(e) => handleKeyDown(e, i)}
                 className="w-12 md:w-20 h-12 text-center text-lg border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
               {i < 3 && (
-                <span className="mx-2 text-gray-400 text-xl select-none">-</span>
+                <span className="mx-2 text-gray-400 text-xl select-none">
+                  -
+                </span>
               )}
             </div>
           ))}
-
-          
-
-          
         </div>
-        <div className='flex w-full max-w-full   lg:px-0 mt-5 '>
-                {otpError && (
-                <p className="text-sm text-red-500 mb-2 -mt-1 ">
-                    {otpError}
-                </p>
-                )}
-            </div>
+        <div className="flex w-full max-w-full   lg:px-0 mt-5 ">
+          {otpError && (
+            <p className="text-sm text-red-500 mb-2 -mt-1 ">{otpError}</p>
+          )}
+        </div>
         <div className=" w-full max-w-full px-0 mt-1  relative lg:px-0">
-          <button className={`relative w-full flex-grow bg-btn-bg text-white rounded-md py-3 mt-5`}
-            onClick={handleVerify}>Verify </button>
-
+          <button
+            className={`relative w-full flex-grow bg-btn-bg text-white rounded-md py-3 mt-5`}
+            onClick={handleVerify}
+          >
+            Verify{" "}
+          </button>
         </div>
       </div>
-      <div className='mt-7 text-t-gray font-normal text-md'>Didn’t receive code? <Link href='/tep' className='text-t-purple font-semibold text-md ml-1'> Resend OTP</Link></div>  
-      <button
-                onClick={onGoBack}
+      <AuthRedirect
+        text="Didn’t receive code?"
+        linkText="Resend OTP"
+        linkHref="/tep"
+      />
 
+      <button
+        onClick={onGoBack}
         className="mt-7 text-t-purple font-semibold text-md cursor-pointer"
       >
         Change Number
